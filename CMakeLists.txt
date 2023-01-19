@@ -107,12 +107,14 @@ add_library(vio src/lidar_selection.cpp
                 src/point.cpp
                 src/map.cpp
                 )
+add_dependencies(vio ${PROJECT_NAME}_gencpp)
 add_executable(fastlivo_mapping src/laserMapping.cpp 
                                 src/IMU_Processing.cpp
                                 src/preprocess.cpp
                                 )
 target_link_libraries(fastlivo_mapping ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} vio ikdtree)
 target_include_directories(fastlivo_mapping PRIVATE ${PYTHON_INCLUDE_DIRS})
+add_dependencies(fastlivo_mapping ${PROJECT_NAME}_gencpp)
 
 # add_executable(kd_tree_test include/ikd-Tree/ikd_Tree.cpp src/kd_tree_test.cpp)
 # target_link_libraries(kd_tree_test ${PCL_LIBRARIES})
